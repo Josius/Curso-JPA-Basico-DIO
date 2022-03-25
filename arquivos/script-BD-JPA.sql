@@ -9,18 +9,19 @@ create table Aluno(
     estado_id integer
 );
 
-alter table Aluno
-add foreign key (estado_id) references Estado(id_estado);
-
 create table Estado(
 	id_estado integer primary key auto_increment,
     nome varchar(80) not null,
     sigla varchar(2) not null,
     aluno_id integer
 );
+-- não executada abaixo
 
-alter table Estado 
-add foreign key (aluno_id) references Aluno(id_aluno);
+alter table Aluno
+add foreign key (estado_id) references Estado(id_estado);
+
+-- alter table Estado 
+-- add foreign key (aluno_id) references Aluno(id_aluno);
 
 describe Aluno;
 describe Estado;
@@ -35,6 +36,8 @@ select * from Estado;
 select * from Aluno;
 
 update Aluno set estado_id = '1' where id_aluno = '2';
-UPDATE `digital_innovation_one`.`Aluno` SET `estado_id` = '2' WHERE (`id_aluno` = '3');
-UPDATE `digital_innovation_one`.`Aluno` SET `estado_id` = '1' WHERE (`id_aluno` = '4');
+UPDATE Aluno SET estado_id = '2' WHERE id_aluno = '3';
+UPDATE `digital_innovation_one`.`Aluno` SET `estado_id` = '1' WHERE (`id_aluno` = '1');
+
+ALTER TABLE Estado DROP COLUMN aluno_id;
 
